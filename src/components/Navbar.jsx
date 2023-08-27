@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { NavLink } from "react-router-dom"
 import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
+import { useDispatch } from 'react-redux';
+import { changeTheme } from '../store/Slices/themeSlice';
 
 
 
 export default function Navbar(){
     const [nav,setNav] = useState(false);
-    const [theme,setTheme]=useState("light");
+    const [themes,setThemes]=useState("light");
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(changeTheme(themes));
+    },[themes]);
     return(
         <>
             <nav className="nav-bar w-full bg-cyan-950 flex justify-between items-center p-4 border-b-2 border-white ">
-                <div className="logo">
+                <div className="logo w-fit">
                     <h1 className="text-2xl text-white">MovieOo</h1>
                 </div>
                 <div className="theme-div flex space-x-2">
-                    <BsFillSunFill className='cursor-pointer' color={`${theme === 'light'?'white':'black'}`} onClick={()=>{setTheme("light")}}/>
-                    <BsMoonStarsFill className='cursor-pointer' color={`${theme === 'dark'?'white':'black'}`} onClick={()=>{setTheme("dark")}}/>
+                    <BsFillSunFill className='cursor-pointer' color={`${themes === 'light'?'white':'black'}`} onClick={()=>{setThemes("light")}}/>
+                    <BsMoonStarsFill className='cursor-pointer' color={`${themes === 'dark'?'white':'black'}`} onClick={()=>{setThemes("dark")}}/>
                 </div>
                 <div className="bars flex w-6 flex-col space-y-2 md:hidden" onClick={()=>{setNav(!nav)}}>
                     <span className={`border border-white transition-all duration-300 ${nav?`rotate-45 translate-y-[0.30rem]`:`rotate-0`}`}></span>

@@ -12,9 +12,9 @@ export default function Movies(){
         setMovies(data);
     }
     return(
-        <div className="main-movie-div w-full flex flex-wrap">
+        <div className="main-movie-div w-full flex flex-wrap justify-center">
             {
-                movies.slice(0,-1).map((item,index)=>{
+                movies.slice(0,-1).map((item)=>{
                     return <Moviecards Title={item.Title} Poster={item.Poster} Year={item.Year} Runtime={item.Runtime}/>
                 })
             }
