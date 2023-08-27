@@ -6,14 +6,17 @@ module.exports = {
   output: {
     path: path.join(__dirname, "/dist"), 
     filename: "bundle.js",
+    
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "public/index.html",
+      publicPath: '/',
     }),
   ],
   devServer: {
     port: 3030,
+    historyApiFallback: true,
   },
   resolve: {
     extensions: ['.js', '.jsx']
